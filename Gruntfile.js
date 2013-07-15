@@ -246,6 +246,10 @@ module.exports = function (grunt) {
       ]
     },
     karma: {
+      e2e:{
+	configFile:'karma-e2e.conf.js',
+	singleRun:true
+      },
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
@@ -296,6 +300,18 @@ module.exports = function (grunt) {
     'concurrent:test',
     'connect:test',
     'karma'
+  ]);
+
+  grunt.registerTask('test:e2e', [
+    'clean:server',
+    'karma:e2e'
+  ]);
+
+  grunt.registerTask('test:unit', [
+    'clean:server',
+    'concurrent:test',
+    'connect:test',
+    'karma:unit'
   ]);
 
   grunt.registerTask('build', [
